@@ -174,6 +174,32 @@ router.post("/checkout", middleware.isLoggedIn, function (req, res) {
                 req.flash("error", "Something went wrong with saving your order.");
                 return res.redirect("/products");
             }
+
+            // send email to user with order receipt
+            // var smtpTransporter = nodemailer.createTransport({
+            //     service: "SendPulse",
+            //     auth: {
+            // SendPulse SMTP Settings/Credentials
+            // user: SMTP Settings Login
+            // pass: SMTP Settings Password
+            //         user: "jc.xypher@gmail.com",
+            //         pass: process.env.SENDPULSEPASS
+            //     }
+            // });
+            // var mailOptions = {
+            //     to: order.email,
+            //     from: "jc.xypher@gmail.com", // SendPulse user
+            //     subject: "E-Commerce Project - Order Receipt",
+            //     text: "Thank you for your purchase! This email is a confirmation for your order and details are below."
+            // };
+            // smtpTransporter.sendMail(mailOptions, function(err){
+            //     // req.flash("success", "An e-mail has been sent to " + user.email + " with further instructions.");
+            //     // done(err, "done");
+            //     if(err) {
+            //       console.log(err);
+            //     }
+            // });
+
             req.flash("success", "You successfully paid $" + cart.totalPrice + "!");
             req.session.cart = null;
             res.redirect("/products");

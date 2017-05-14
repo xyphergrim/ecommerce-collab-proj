@@ -1,0 +1,30 @@
+<% layout("layouts/boilerplate") -%>
+
+<!-- Flash Messages -->
+<% if(error && error.length > 0){ %>
+<div id="flash" class="alert alert-danger" role="alert">
+    <%= error %>
+</div>
+<% } %>
+<% if(success && success.length > 0){ %>
+<div id="flash" class="alert alert-success" role="alert">
+    <%= success %>
+</div>
+<% } %>
+<% if(info && info.length > 0){ %>
+<div id="flash" class="alert alert-info" role="alert">
+    <%= info %>
+</div>
+<% } %>
+
+<h1>Forgot your password?</h1>
+<div class="container">
+    <form action="/user/forgot" method="POST">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" name="email" autofocus>
+      </div>
+      <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+      <button type="submit" class="btn btn-primary">Reset Password</button>
+    </form>
+</div>

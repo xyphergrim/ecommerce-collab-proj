@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(validator());
 
-// use ejs-locals for all ejs templates: 
+// use ejs-locals for all ejs templates:
 app.engine('ejs', engine);
 
 app.set("view engine", "ejs");
@@ -63,6 +63,7 @@ app.use(function(req, res, next) {
     res.locals.session = req.session;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
+    res.locals.info = req.flash("info");
     next();
 });
 
